@@ -1,7 +1,16 @@
 "use client"
 import {useState, useEffect } from "react"
 import axios from 'axios';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+  } from "@/components/ui/card"
 
+import { Separator } from "@/components/ui/separator"
 
 interface Aluno {
     nome: string;
@@ -75,7 +84,7 @@ export default function GetAlunosNivel() {
             try {
                 const response = await axios.get('http://localhost:3000/api/v1/alunos');
                 const alunosData: Aluno[] = response.data; // Supondo que os dados dos alunos estão na resposta
-                
+
                 // Atualiza o estado com a lista de alunos
                 setAlunos(alunosData);
             } catch (error) {
@@ -123,18 +132,35 @@ export default function GetAlunosNivel() {
 
       
     return (
-          <div>
-            {/* Renderização dos alunos por nível */}
-            {Object.keys(alunosPorNivel).map((nivel, index) => (
-                <div key={index}>
-                    <h2>Nível: {nivel}</h2>
-                    <ul>
-                        {alunosPorNivel[nivel].map((aluno, alunoIndex) => (
-                            <li key={alunoIndex}>{aluno.nome}</li>
-                        ))}
-                    </ul>
-                </div>
-            ))}
-        </div>  
+          <Card>
+            <CardHeader>
+                <CardTitle>Lista de alunos</CardTitle>
+                <CardDescription>Sepração por níveis</CardDescription>
+            </CardHeader>
+            <CardContent>
+                {/* Renderização dos alunos por nível */}
+                {Object.keys(alunosPorNivel).map((nivel, index) => (
+                    <div key={index}>
+                        <h2>
+                            <span className="font-bold">
+                                Nível: 
+                            </span>
+                            <span className="ml-2">
+                             {nivel}
+                            </span>
+                        </h2>
+                        <ul>
+                            {alunosPorNivel[nivel].map((aluno, alunoIndex) => (
+                                <>
+                                    <li key={alunoIndex}><span className="font-bold">Nome: </span>{aluno.nome}</li>
+                                    <li><span className="font-bold">Idade: </span>{aluno.idade}</li>
+                                </>
+                            ))}
+                        </ul>
+                    <Separator className="m-2"/>
+                    </div>
+                ))}
+            </CardContent>
+        </Card>  
     );
 }
