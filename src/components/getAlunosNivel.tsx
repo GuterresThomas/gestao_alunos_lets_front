@@ -10,6 +10,14 @@ import {
     CardTitle,
   } from "@/components/ui/card"
 
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion"
+
+
 import { Separator } from "@/components/ui/separator"
 
 interface Aluno {
@@ -43,37 +51,6 @@ interface Aluno {
     observacoes: string;
   }
 
-  const initialAlunoState: Aluno = {
-    nome: "",
-    idade: "",
-    objetivos: "",
-    menos_consciencia_corporal: false,
-    menos_adaptado: false,
-    mais_dor: false,
-    menos_gesto_tecnico: false,
-    menos_forca: false,
-    menos_mobilidade: false,
-    menos_resistencia: false,
-    menos_equilibrio: false,
-    mais_ou_menos_consciencia_corporal: false,
-    mais_ou_menos_adaptado: false,
-    mais_ou_menos_dor: false,
-    mais_ou_menos_gesto_tecnico: false,
-    mais_ou_menos_forca: false,
-    mais_ou_menos_mobilidade: false,
-    mais_ou_menos_resistencia: false,
-    mais_ou_menos_equilibrio: false,
-    mais_consciencia_corporal: false,
-    mais_adaptado: false,
-    menos_dor: false,
-    mais_gesto_tecnico: false,
-    mais_forca: false,
-    mais_mobilidade: false,
-    mais_resistencia: false,
-    mais_equilibrio: false,
-    observacoes: "",
-
-};
 
 export default function GetAlunosNivel() {
     const [alunos, setAlunos] = useState<Aluno[]>([]);
@@ -132,35 +109,45 @@ export default function GetAlunosNivel() {
 
       
     return (
-          <Card>
-            <CardHeader>
-                <CardTitle>Lista de alunos</CardTitle>
-                <CardDescription>Sepração por níveis</CardDescription>
-            </CardHeader>
-            <CardContent>
-                {/* Renderização dos alunos por nível */}
-                {Object.keys(alunosPorNivel).map((nivel, index) => (
-                    <div key={index}>
-                        <h2>
-                            <span className="font-bold">
-                                Nível: 
-                            </span>
-                            <span className="ml-2">
-                             {nivel}
-                            </span>
-                        </h2>
-                        <ul>
-                            {alunosPorNivel[nivel].map((aluno, alunoIndex) => (
-                                <>
-                                    <li key={alunoIndex}><span className="font-bold">Nome: </span>{aluno.nome}</li>
-                                    <li><span className="font-bold">Idade: </span>{aluno.idade}</li>
-                                </>
-                            ))}
-                        </ul>
-                    <Separator className="m-2"/>
-                    </div>
-                ))}
-            </CardContent>
-        </Card>  
+          <div className="flex justify-center w-screen">
+                <Card className="w-3/4 mt-2">
+                    <CardHeader>
+                        <CardTitle>Lista de alunos</CardTitle>
+                        <CardDescription>Sepração por níveis</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <Accordion type="single" collapsible>
+                            <AccordionItem value="item-1">
+                                    {/* Renderização dos alunos por nível */}
+                                    {Object.keys(alunosPorNivel).map((nivel, index) => (
+                                        <div key={index}>
+                                             <AccordionTrigger>
+                                            <h2>
+                                                <span className="font-bold">
+                                                    Nível: 
+                                                </span>
+                                                <span className="ml-2">
+                                                {nivel}
+                                                </span>
+                                            </h2>
+                                            </AccordionTrigger>
+                                            <ul className="">
+                                            <AccordionContent>
+                                                {alunosPorNivel[nivel].map((aluno, alunoIndex) => (
+                                                    <>
+                                                        <li key={alunoIndex}><span className="font-bold">Nome: </span>{aluno.nome}</li>
+                                                        <li><span className="font-bold">Idade: </span>{aluno.idade}</li>
+                                                    </>
+                                                ))}
+                                            </AccordionContent>
+                                            </ul>
+                                        <Separator className="m-2"/>                                  
+                                        </div>                                       
+                                    ))}                         
+                            </AccordionItem>
+                        </Accordion>
+                    </CardContent>
+                </Card>
+          </div>  
     );
 }

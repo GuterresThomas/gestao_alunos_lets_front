@@ -2,8 +2,27 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+  } from "@/components/ui/card"
 
-const AddAlunoForm = () => {
+  import { Input } from "@/components/ui/input"
+import { Button } from './ui/button';
+import { Checkbox } from './ui/checkbox';
+import { Label } from './ui/label';
+
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+
+
+
+export default function AddForm() {  
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [aluno, setAluno] = useState({
     nome: '',
     idade: '',
@@ -45,6 +64,7 @@ const AddAlunoForm = () => {
     try {
       const response = await axios.post('http://localhost:3000/api/v1/alunos', aluno);
       console.log('Aluno adicionado:', response.data);
+      alert('Aluno Adicionado com sucesso!')
       // Limpar o formulário ou fazer outra ação após adicionar o aluno com sucesso
       setAluno({
         nome: '',
@@ -78,20 +98,143 @@ const AddAlunoForm = () => {
       });
     } catch (error) {
       console.error('Erro ao adicionar aluno:', error);
+      alert('Erro ao adicionar aluno. Por favor, tente novamente.');
     }
   };
 
+  const handleCheckboxClick = (fieldName: keyof typeof aluno) => {
+    setAluno(prevState => ({
+      ...prevState,
+      [fieldName]: !prevState[fieldName],
+    }));
+  };
+
+  
   return (
-    <div>
-      <h2>Adicionar Aluno</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="nome" placeholder="Nome" value={aluno.nome} onChange={handleChange} />
-        <input type="text" name="idade" placeholder="Idade" value={aluno.idade} onChange={handleChange} />
-        {/* Outros campos do aluno */}
-        <button type="submit">Adicionar Aluno</button>
-      </form>
+    <div className="flex justify-center w-screen">
+      <Card className='w-3/4'>
+        <CardHeader>
+          <CardTitle>Adicionar aluno:</CardTitle>
+          <CardDescription>Formulário para adicionar aluno</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form className="flex-col flex justify-center" onSubmit={handleSubmit}>
+            <Input className='m-2' type="text" name="nome" placeholder="Nome" value={aluno.nome} onChange={handleChange} required />
+            <Input className='m-2' type="text" name="idade" placeholder="Idade" value={aluno.idade} onChange={handleChange} />
+            <Input className='m-2' type="text" name="objetivos" placeholder="Objetivos" value={aluno.objetivos} onChange={handleChange} />
+            <div className='flex mt-2'>
+              <Checkbox className='' name="menos_consciencia_corporal" checked={aluno.menos_consciencia_corporal} onClick={() => handleCheckboxClick('menos_consciencia_corporal')} />
+              <Label className='ml-2'htmlFor="menos_consciencia_corporal">-Consciencia corporal</Label>
+            </div>
+            <div className='flex mt-2'>
+              <Checkbox className='' name="menos_adaptado" checked={aluno.menos_adaptado} onClick={() => handleCheckboxClick('menos_adaptado')}/>
+              <Label className='ml-2' htmlFor="menos_adaptado">-Adaptado</Label>
+            </div>
+            <div className='flex mt-2'>  
+              <Checkbox  name="mais_dor" checked={aluno.mais_dor} onClick={() => handleCheckboxClick('mais_dor')}/>
+              <Label className='ml-2' htmlFor="mais_dor">+Dor</Label>
+            </div>
+            <div className='flex mt-2'>  
+            <Checkbox
+              name="menos_gesto_tecnico" checked={aluno.menos_gesto_tecnico} onClick={() => handleCheckboxClick('menos_gesto_tecnico')}
+            />
+            <Label className='ml-2' htmlFor="menos_gesto_tecnico">-Gesto Técnico</Label>
+            </div>
+            <div className='flex mt-2'>  
+            <Checkbox name="menos_forca" checked={aluno.menos_forca} onClick={() => handleCheckboxClick('menos_forca')}
+            />
+            <Label className='ml-2' htmlFor="menos_forca">-Força</Label>
+            </div>
+            <div className='flex mt-2'>  
+            <Checkbox name="menos_mobilidade" checked={aluno.menos_mobilidade} onClick={() => handleCheckboxClick('menos_mobilidade')} />
+            <Label className='ml-2' htmlFor="menos_mobilidade">-Mobilidade</Label>
+            </div>
+            <div className='flex mt-2'>  
+            <Checkbox name="menos_resistencia" checked={aluno.menos_resistencia} onClick={() => handleCheckboxClick('menos_resistencia')} />
+            <Label className='ml-2' htmlFor="menos_resistencia">-Resistencia</Label>
+            </div>
+            <div className='flex mt-2'>  
+            <Checkbox name="menos_equilibrio" checked={aluno.menos_equilibrio} onClick={() => handleCheckboxClick('menos_equilibrio')} />
+            <Label className='ml-2' htmlFor="menos_equilibrio">-Equilibrio</Label>
+            </div>
+            
+            <div className='flex mt-2'>  
+            <Checkbox name="mais_ou_menos_consciencia_corporal" checked={aluno.mais_ou_menos_consciencia_corporal} onClick={() => handleCheckboxClick('mais_ou_menos_consciencia_corporal')} />
+            <Label className='ml-2' htmlFor="mais_ou_menos_consciencia_corporal">+-Consciencia corporal</Label>
+            </div>
+            <div className='flex mt-2'>  
+            <Checkbox name="mais_ou_menos_adaptado" checked={aluno.mais_ou_menos_adaptado} onClick={() => handleCheckboxClick('mais_ou_menos_adaptado')}/>
+            <Label className='ml-2' htmlFor="mais_ou_menos_adaptado">+-Adaptado</Label>
+            </div>
+            <div className='flex mt-2'>  
+            <Checkbox  name="mais_ou_menos_dor" checked={aluno.mais_ou_menos_dor} onClick={() => handleCheckboxClick('mais_ou_menos_dor')}/>
+            <Label className='ml-2' htmlFor="mais_ou_menos_dor">+-Dor</Label>
+            </div>
+            <div className='flex mt-2'>  
+            <Checkbox
+              name="mais_ou_menos_gesto_tecnico" checked={aluno.mais_ou_menos_gesto_tecnico} onClick={() => handleCheckboxClick('mais_ou_menos_gesto_tecnico')}
+            />
+            <Label className='ml-2' htmlFor="mais_ou_menos_gesto_tecnico">+-Gesto Técnico</Label>
+            </div>
+            <div className='flex mt-2'>  
+            <Checkbox name="mais_ou_menos_forca" checked={aluno.mais_ou_menos_forca} onClick={() => handleCheckboxClick('mais_ou_menos_forca')}
+            />
+            <Label className='ml-2' htmlFor="mais_ou_menos_forca">+-Força</Label>
+            </div>
+            <div className='flex mt-2'>  
+            <Checkbox name="mais_ou_menos_mobilidade" checked={aluno.mais_ou_menos_mobilidade} onClick={() => handleCheckboxClick('mais_ou_menos_mobilidade')} />
+            <Label className='ml-2' htmlFor="mais_ou_menos_mobilidade">+-Mobilidade</Label>
+            </div>
+            <div className='flex mt-2'>  
+            <Checkbox name="mais_ou_menos_resistencia" checked={aluno.mais_ou_menos_resistencia} onClick={() => handleCheckboxClick('mais_ou_menos_resistencia')} />
+            <Label className='ml-2' htmlFor="mais_ou_menos_resistencia">+-Resistencia</Label>
+            </div>
+            <div className='flex mt-2'>  
+            <Checkbox name="mais_ou_menos_equilibrio" checked={aluno.mais_ou_menos_equilibrio} onClick={() => handleCheckboxClick('mais_ou_menos_equilibrio')} />
+            <Label className='ml-2' htmlFor="mais_ou_menos_equilibrio">+-Equilibrio</Label>
+            </div>
+
+            <div className='flex mt-2'>  
+            <Checkbox name="mais_consciencia_corporal" checked={aluno.mais_consciencia_corporal} onClick={() => handleCheckboxClick('mais_consciencia_corporal')} />
+            <Label className='ml-2' htmlFor="mais_consciencia_corporal">+Consciencia corporal</Label>
+            </div>
+            <div className='flex mt-2'>  
+            <Checkbox name="mais_adaptado" checked={aluno.mais_adaptado} onClick={() => handleCheckboxClick('mais_adaptado')}/>
+            <Label className='ml-2' htmlFor="mais_adaptado">+Adaptado</Label>
+            </div>
+            <div className='flex mt-2'>  
+            <Checkbox  name="menos_dor" checked={aluno.menos_dor} onClick={() => handleCheckboxClick('menos_dor')}/>
+            <Label className='ml-2' htmlFor="menos_dor">-Dor</Label>
+            </div>
+            <div className='flex mt-2'>  
+            <Checkbox
+              name="mais_gesto_tecnico" checked={aluno.mais_gesto_tecnico} onClick={() => handleCheckboxClick('mais_gesto_tecnico')}
+            />
+            <Label className='ml-2' htmlFor="mais_gesto_tecnico">+Gesto Técnico</Label>
+            </div>
+            <div className='flex mt-2'>  
+            <Checkbox name="mais_forca" checked={aluno.mais_forca} onClick={() => handleCheckboxClick('mais_forca')}
+            />
+            <Label className='ml-2' htmlFor="mais_forca">+Força</Label>
+            </div>
+            <div className='flex mt-2'>  
+            <Checkbox name="mais_mobilidade" checked={aluno.mais_mobilidade} onClick={() => handleCheckboxClick('mais_mobilidade')} />
+            <Label className='ml-2' htmlFor="">+Mobilidade</Label>
+            </div>
+            <div className='flex mt-2'>  
+            <Checkbox name="mais_resistencia" checked={aluno.mais_resistencia} onClick={() => handleCheckboxClick('mais_resistencia')} />
+            <Label className='ml-2' htmlFor="mais_resistencia">+Resistencia</Label>
+            </div>
+            <div className='flex mt-2'>  
+            <Checkbox name="mais_equilibrio" checked={aluno.mais_equilibrio} onClick={() => handleCheckboxClick('mais_equilibrio')} />
+            <Label className='ml-2' htmlFor="mais_equilibrio">+Equilibrio</Label>
+            </div>
+            <Input className='m-2' type="text" name="observacoes" placeholder="Observações" value={aluno.observacoes} onChange={handleChange} />
+            <Button className='m-2' type="submit">Adicionar Aluno</Button>
+          </form>
+        </CardContent>
+      </Card>
     </div>
   );
-};
 
-export default AddAlunoForm;
+};
