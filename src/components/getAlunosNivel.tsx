@@ -19,8 +19,10 @@ import {
 
 
 import { Separator } from "@/components/ui/separator"
+import { Button } from "./ui/button";
 
 interface Aluno {
+    id: number;
     nome: string;
     idade: string;
     objetivos: string;
@@ -107,9 +109,22 @@ export default function GetAlunosNivel() {
             alunosPorNivel[nivel].push(aluno);
         });
 
-      
-    return (
-          <div className="flex justify-center w-screen">
+
+        async function handleDeleteAluno(id: any) {
+            try {
+                const response = await axios.delete(`http://localhost:3000/api/v1/alunos/${id}`);
+                console.log(response)
+                alert('Aluno excluido com sucesso!')
+                window.location.href = '/'  
+                
+            } catch (error) {
+                 console.error('Erro ao excluir aluno:', error);
+            }
+        }
+    
+        
+        return (
+            <div className="flex justify-center w-screen">
                 <Card className="w-3/4 mt-2">
                     <CardHeader>
                         <CardTitle>Lista de alunos</CardTitle>
@@ -117,37 +132,36 @@ export default function GetAlunosNivel() {
                     </CardHeader>
                     <CardContent>
                         <Accordion type="single" collapsible>
-                            <AccordionItem value="item-1">
-                                    {/* Renderização dos alunos por nível */}
-                                    {Object.keys(alunosPorNivel).map((nivel, index) => (
-                                        <div key={index}>
-                                             <AccordionTrigger>
-                                            <h2>
-                                                <span className="font-bold">
-                                                    Nível: 
-                                                </span>
-                                                <span className="ml-2">
+                            {Object.keys(alunosPorNivel).map((nivel, index) => (
+                                <AccordionItem key={index} value={`item-${index}`}>
+                                    <AccordionTrigger>
+                                        <h2>
+                                            <span className="font-bold">
+                                                Nível: 
+                                            </span>
+                                            <span className="ml-2">
                                                 {nivel}
-                                                </span>
-                                            </h2>
-                                            </AccordionTrigger>
-                                            <ul className="">
-                                            <AccordionContent>
-                                                {alunosPorNivel[nivel].map((aluno, alunoIndex) => (
-                                                    <>
-                                                        <li key={alunoIndex}><span className="font-bold">Nome: </span>{aluno.nome}</li>
-                                                        <li><span className="font-bold">Idade: </span>{aluno.idade}</li>
-                                                    </>
-                                                ))}
-                                            </AccordionContent>
-                                            </ul>
-                                        <Separator className="m-2"/>                                  
-                                        </div>                                       
-                                    ))}                         
-                            </AccordionItem>
+                                            </span>
+                                        </h2>
+                                    </AccordionTrigger>
+                                    <AccordionContent>
+                                        <ul className="">
+                                            {alunosPorNivel[nivel].map((aluno, alunoIndex) => (
+                                                <div key={alunoIndex}>
+                                                    <li className="cursor-pointer hover:underline"><span className="font-bold cursor-pointer hover:underline">Nome: </span>{aluno.nome}</li>
+                                                    <li><span className="font-bold">Idade: </span>{aluno.idade}</li>
+                                                    {/* Adicione outros detalhes do aluno conforme necessário */}
+                                                    <Button onClick={() => handleDeleteAluno(aluno.id)}>Excluir aluno</Button>
+                                                    <Separator className="m-2"/> 
+                                                </div>
+                                            ))}
+                                        </ul>
+                                    </AccordionContent>
+                                </AccordionItem>
+                            ))}
                         </Accordion>
                     </CardContent>
                 </Card>
-          </div>  
-    );
+            </div>
+        );
 }
