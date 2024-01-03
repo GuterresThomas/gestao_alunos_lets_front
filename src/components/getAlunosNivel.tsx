@@ -176,7 +176,6 @@ export default function GetAlunosNivel() {
                                                     <li onClick={() => handleIdLocalStorage(aluno.id)} className="cursor-pointer hover:underline"><span className="font-bold cursor-pointer hover:underline">Nome: </span>{aluno.nome}</li>
                                                     <li><span className="font-bold">Idade: </span>{aluno.idade}</li>
                                                     {/* Adicione outros detalhes do aluno conforme necessário */}
-                                                    <Button className="mr-2" onClick={() => handleDeleteAluno(aluno.id)}>Excluir aluno</Button>
                                                     <AlertDialog>
                                                         <AlertDialogTrigger><Button onClick={() => handleIdLocalStorage(aluno.id)}>Editar aluno</Button></AlertDialogTrigger>
                                                         <AlertDialogContent>
@@ -186,12 +185,27 @@ export default function GetAlunosNivel() {
                                                                 Preencha o Formulário com cuidado.
                                                             </AlertDialogDescription>
                                                             </AlertDialogHeader>
-                                                            <ScrollArea className=" w-full rounded-md border p-4">
+                                                            <div className=" scroll-auto overflow-y-auto h-[250px]">
                                                                 <EditForm/>
-                                                            </ScrollArea>
+                                                            </div>
                                                             <AlertDialogFooter>
                                                             <AlertDialogCancel><span onClick={handleDeleteIdLocalStorage}>Cancel</span></AlertDialogCancel>
-                                                            <AlertDialogAction>Salvar</AlertDialogAction>
+                                                            </AlertDialogFooter>
+                                                        </AlertDialogContent>
+                                                    </AlertDialog>
+                                                    <AlertDialog>
+                                                        <AlertDialogTrigger><Button className="ml-2" onClick={() => handleIdLocalStorage(aluno.id)}>Excluir aluno</Button></AlertDialogTrigger>
+                                                        <AlertDialogContent>
+                                                            <AlertDialogHeader>
+                                                            <AlertDialogTitle>Excluir Aluno</AlertDialogTitle>
+                                                            <AlertDialogDescription>
+                                                                Você tem certeza que quer excluir o aluno?
+                                                            </AlertDialogDescription>
+                                                            </AlertDialogHeader>
+                                                                <span className="font-bold">Essa é uma ação irreversível!</span>
+                                                            <AlertDialogFooter>
+                                                            <AlertDialogCancel><span onClick={handleDeleteIdLocalStorage}>Cancelar</span></AlertDialogCancel>
+                                                            <AlertDialogAction onClick={() => { handleDeleteAluno(localStorage.getItem('idSelecionado')); handleDeleteIdLocalStorage()}}>Excluir</AlertDialogAction>
                                                             </AlertDialogFooter>
                                                         </AlertDialogContent>
                                                     </AlertDialog>
