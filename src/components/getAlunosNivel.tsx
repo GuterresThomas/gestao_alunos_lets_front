@@ -1,5 +1,20 @@
 "use client"
 import {useState, useEffect } from "react"
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+  } from "@/components/ui/alert-dialog"
+
+import { ScrollArea } from "@/components/ui/scroll-area"
+
+  
 import axios from 'axios';
 import {
     Card,
@@ -20,6 +35,8 @@ import {
 
 import { Separator } from "@/components/ui/separator"
 import { Button } from "./ui/button";
+import AddForm from "./addAlunos";
+import EditForm from "./editAluno";
 
 interface Aluno {
     id: number;
@@ -121,7 +138,15 @@ export default function GetAlunosNivel() {
                  console.error('Erro ao excluir aluno:', error);
             }
         }
+
+
+        function handleIdLocalStorage(id: any) {
+            localStorage.setItem('idSelecionado', id)
+        }
     
+        function handleDeleteIdLocalStorage() {
+            localStorage.removeItem('idSelecionado')
+        }
         
         return (
             <div className="flex justify-center w-screen">
@@ -148,10 +173,28 @@ export default function GetAlunosNivel() {
                                         <ul className="">
                                             {alunosPorNivel[nivel].map((aluno, alunoIndex) => (
                                                 <div key={alunoIndex}>
-                                                    <li className="cursor-pointer hover:underline"><span className="font-bold cursor-pointer hover:underline">Nome: </span>{aluno.nome}</li>
+                                                    <li onClick={() => handleIdLocalStorage(aluno.id)} className="cursor-pointer hover:underline"><span className="font-bold cursor-pointer hover:underline">Nome: </span>{aluno.nome}</li>
                                                     <li><span className="font-bold">Idade: </span>{aluno.idade}</li>
                                                     {/* Adicione outros detalhes do aluno conforme necessário */}
-                                                    <Button onClick={() => handleDeleteAluno(aluno.id)}>Excluir aluno</Button>
+                                                    <Button className="mr-2" onClick={() => handleDeleteAluno(aluno.id)}>Excluir aluno</Button>
+                                                    <AlertDialog>
+                                                        <AlertDialogTrigger><Button onClick={() => handleIdLocalStorage(aluno.id)}>Editar aluno</Button></AlertDialogTrigger>
+                                                        <AlertDialogContent>
+                                                            <AlertDialogHeader>
+                                                            <AlertDialogTitle>Editar Aluno</AlertDialogTitle>
+                                                            <AlertDialogDescription>
+                                                                Preencha o Formulário com cuidado.
+                                                            </AlertDialogDescription>
+                                                            </AlertDialogHeader>
+                                                            <ScrollArea className=" w-full rounded-md border p-4">
+                                                                <EditForm/>
+                                                            </ScrollArea>
+                                                            <AlertDialogFooter>
+                                                            <AlertDialogCancel><span onClick={handleDeleteIdLocalStorage}>Cancel</span></AlertDialogCancel>
+                                                            <AlertDialogAction>Salvar</AlertDialogAction>
+                                                            </AlertDialogFooter>
+                                                        </AlertDialogContent>
+                                                    </AlertDialog>
                                                     <Separator className="m-2"/> 
                                                 </div>
                                             ))}
