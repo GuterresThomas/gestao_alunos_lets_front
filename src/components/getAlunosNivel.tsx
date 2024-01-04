@@ -37,6 +37,7 @@ import { Separator } from "@/components/ui/separator"
 import { Button } from "./ui/button";
 import AddForm from "./addAlunos";
 import EditForm from "./editAluno";
+import FetchAlunosById from "./fetchAlunosById";
 
 interface Aluno {
     id: number;
@@ -173,7 +174,13 @@ export default function GetAlunosNivel() {
                                         <ul className="">
                                             {alunosPorNivel[nivel].map((aluno, alunoIndex) => (
                                                 <div key={alunoIndex}>
-                                                    <li onClick={() => handleIdLocalStorage(aluno.id)} className="cursor-pointer hover:underline"><span className="font-bold cursor-pointer hover:underline">Nome: </span>{aluno.nome}</li>
+                                                    <AlertDialog>
+                                                    <AlertDialogTrigger><li onClick={() => handleIdLocalStorage(aluno.id)} className="cursor-pointer hover:underline"><span className="font-bold cursor-pointer hover:underline">Nome: </span>{aluno.nome}</li></AlertDialogTrigger>
+                                                    <AlertDialogContent>
+                                                        <FetchAlunosById/>
+                                                    <AlertDialogCancel onClick={handleDeleteIdLocalStorage}>Sair</AlertDialogCancel>
+                                                    </AlertDialogContent>
+                                                    </AlertDialog>
                                                     <li><span className="font-bold">Idade: </span>{aluno.idade}</li>
                                                     {/* Adicione outros detalhes do aluno conforme necessário */}
                                                     <AlertDialog>
