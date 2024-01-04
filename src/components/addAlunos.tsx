@@ -124,110 +124,110 @@ export default function AddForm() {
             <Input className='m-2' type="text" name="objetivos" placeholder="Objetivos" value={aluno.objetivos} onChange={handleChange} />
             <div className='flex mt-2'>
               <Checkbox className='' name="menos_consciencia_corporal" checked={aluno.menos_consciencia_corporal} onClick={() => handleCheckboxClick('menos_consciencia_corporal')} />
-              <Label className='ml-2'htmlFor="menos_consciencia_corporal">-Consciencia corporal</Label>
+              <Label className='ml-2'htmlFor="menos_consciencia_corporal">1-3 Consciencia corporal</Label>
             </div>
             <div className='flex mt-2'>
               <Checkbox className='' name="menos_adaptado" checked={aluno.menos_adaptado} onClick={() => handleCheckboxClick('menos_adaptado')}/>
-              <Label className='ml-2' htmlFor="menos_adaptado">-Adaptado</Label>
+              <Label className='ml-2' htmlFor="menos_adaptado">1-3 Adaptado</Label>
             </div>
             <div className='flex mt-2'>  
               <Checkbox  name="mais_dor" checked={aluno.mais_dor} onClick={() => handleCheckboxClick('mais_dor')}/>
-              <Label className='ml-2' htmlFor="mais_dor">+Dor</Label>
+              <Label className='ml-2' htmlFor="mais_dor">7-10 Dor</Label>
             </div>
             <div className='flex mt-2'>  
             <Checkbox
               name="menos_gesto_tecnico" checked={aluno.menos_gesto_tecnico} onClick={() => handleCheckboxClick('menos_gesto_tecnico')}
             />
-            <Label className='ml-2' htmlFor="menos_gesto_tecnico">-Gesto Técnico</Label>
+            <Label className='ml-2' htmlFor="menos_gesto_tecnico">1-3 Gesto Técnico</Label>
             </div>
             <div className='flex mt-2'>  
             <Checkbox name="menos_forca" checked={aluno.menos_forca} onClick={() => handleCheckboxClick('menos_forca')}
             />
-            <Label className='ml-2' htmlFor="menos_forca">-Força</Label>
+            <Label className='ml-2' htmlFor="menos_forca">1-3 Força</Label>
             </div>
             <div className='flex mt-2'>  
             <Checkbox name="menos_mobilidade" checked={aluno.menos_mobilidade} onClick={() => handleCheckboxClick('menos_mobilidade')} />
-            <Label className='ml-2' htmlFor="menos_mobilidade">-Mobilidade</Label>
+            <Label className='ml-2' htmlFor="menos_mobilidade">1-3 Mobilidade</Label>
             </div>
             <div className='flex mt-2'>  
             <Checkbox name="menos_resistencia" checked={aluno.menos_resistencia} onClick={() => handleCheckboxClick('menos_resistencia')} />
-            <Label className='ml-2' htmlFor="menos_resistencia">-Resistencia</Label>
+            <Label className='ml-2' htmlFor="menos_resistencia">1-3 Resistencia</Label>
             </div>
             <div className='flex mt-2'>  
             <Checkbox name="menos_equilibrio" checked={aluno.menos_equilibrio} onClick={() => handleCheckboxClick('menos_equilibrio')} />
-            <Label className='ml-2' htmlFor="menos_equilibrio">-Equilibrio</Label>
+            <Label className='ml-2' htmlFor="menos_equilibrio">1-3 Equilibrio</Label>
             </div>
             
             <div className='flex mt-2'>  
             <Checkbox name="mais_ou_menos_consciencia_corporal" checked={aluno.mais_ou_menos_consciencia_corporal} onClick={() => handleCheckboxClick('mais_ou_menos_consciencia_corporal')} />
-            <Label className='ml-2' htmlFor="mais_ou_menos_consciencia_corporal">+-Consciencia corporal</Label>
+            <Label className='ml-2' htmlFor="mais_ou_menos_consciencia_corporal">4-6 Consciencia corporal</Label>
             </div>
             <div className='flex mt-2'>  
             <Checkbox name="mais_ou_menos_adaptado" checked={aluno.mais_ou_menos_adaptado} onClick={() => handleCheckboxClick('mais_ou_menos_adaptado')}/>
-            <Label className='ml-2' htmlFor="mais_ou_menos_adaptado">+-Adaptado</Label>
+            <Label className='ml-2' htmlFor="mais_ou_menos_adaptado">4-6 Adaptado</Label>
             </div>
             <div className='flex mt-2'>  
             <Checkbox  name="mais_ou_menos_dor" checked={aluno.mais_ou_menos_dor} onClick={() => handleCheckboxClick('mais_ou_menos_dor')}/>
-            <Label className='ml-2' htmlFor="mais_ou_menos_dor">+-Dor</Label>
+            <Label className='ml-2' htmlFor="mais_ou_menos_dor">4-6 Dor</Label>
             </div>
             <div className='flex mt-2'>  
             <Checkbox
               name="mais_ou_menos_gesto_tecnico" checked={aluno.mais_ou_menos_gesto_tecnico} onClick={() => handleCheckboxClick('mais_ou_menos_gesto_tecnico')}
             />
-            <Label className='ml-2' htmlFor="mais_ou_menos_gesto_tecnico">+-Gesto Técnico</Label>
+            <Label className='ml-2' htmlFor="mais_ou_menos_gesto_tecnico">4-6 Gesto Técnico</Label>
             </div>
             <div className='flex mt-2'>  
             <Checkbox name="mais_ou_menos_forca" checked={aluno.mais_ou_menos_forca} onClick={() => handleCheckboxClick('mais_ou_menos_forca')}
             />
-            <Label className='ml-2' htmlFor="mais_ou_menos_forca">+-Força</Label>
+            <Label className='ml-2' htmlFor="mais_ou_menos_forca">4-6 Força</Label>
             </div>
             <div className='flex mt-2'>  
             <Checkbox name="mais_ou_menos_mobilidade" checked={aluno.mais_ou_menos_mobilidade} onClick={() => handleCheckboxClick('mais_ou_menos_mobilidade')} />
-            <Label className='ml-2' htmlFor="mais_ou_menos_mobilidade">+-Mobilidade</Label>
+            <Label className='ml-2' htmlFor="mais_ou_menos_mobilidade">4-6 Mobilidade</Label>
             </div>
             <div className='flex mt-2'>  
             <Checkbox name="mais_ou_menos_resistencia" checked={aluno.mais_ou_menos_resistencia} onClick={() => handleCheckboxClick('mais_ou_menos_resistencia')} />
-            <Label className='ml-2' htmlFor="mais_ou_menos_resistencia">+-Resistencia</Label>
+            <Label className='ml-2' htmlFor="mais_ou_menos_resistencia">4-6 Resistencia</Label>
             </div>
             <div className='flex mt-2'>  
             <Checkbox name="mais_ou_menos_equilibrio" checked={aluno.mais_ou_menos_equilibrio} onClick={() => handleCheckboxClick('mais_ou_menos_equilibrio')} />
-            <Label className='ml-2' htmlFor="mais_ou_menos_equilibrio">+-Equilibrio</Label>
+            <Label className='ml-2' htmlFor="mais_ou_menos_equilibrio">4-6 Equilibrio</Label>
             </div>
 
             <div className='flex mt-2'>  
             <Checkbox name="mais_consciencia_corporal" checked={aluno.mais_consciencia_corporal} onClick={() => handleCheckboxClick('mais_consciencia_corporal')} />
-            <Label className='ml-2' htmlFor="mais_consciencia_corporal">+Consciencia corporal</Label>
+            <Label className='ml-2' htmlFor="mais_consciencia_corporal">7-10 Consciencia corporal</Label>
             </div>
             <div className='flex mt-2'>  
             <Checkbox name="mais_adaptado" checked={aluno.mais_adaptado} onClick={() => handleCheckboxClick('mais_adaptado')}/>
-            <Label className='ml-2' htmlFor="mais_adaptado">+Adaptado</Label>
+            <Label className='ml-2' htmlFor="mais_adaptado">7-10 Adaptado</Label>
             </div>
             <div className='flex mt-2'>  
             <Checkbox  name="menos_dor" checked={aluno.menos_dor} onClick={() => handleCheckboxClick('menos_dor')}/>
-            <Label className='ml-2' htmlFor="menos_dor">-Dor</Label>
+            <Label className='ml-2' htmlFor="menos_dor">1-3 Dor</Label>
             </div>
             <div className='flex mt-2'>  
             <Checkbox
               name="mais_gesto_tecnico" checked={aluno.mais_gesto_tecnico} onClick={() => handleCheckboxClick('mais_gesto_tecnico')}
             />
-            <Label className='ml-2' htmlFor="mais_gesto_tecnico">+Gesto Técnico</Label>
+            <Label className='ml-2' htmlFor="mais_gesto_tecnico">7-10 Gesto Técnico</Label>
             </div>
             <div className='flex mt-2'>  
             <Checkbox name="mais_forca" checked={aluno.mais_forca} onClick={() => handleCheckboxClick('mais_forca')}
             />
-            <Label className='ml-2' htmlFor="mais_forca">+Força</Label>
+            <Label className='ml-2' htmlFor="mais_forca">7-10 Força</Label>
             </div>
             <div className='flex mt-2'>  
             <Checkbox name="mais_mobilidade" checked={aluno.mais_mobilidade} onClick={() => handleCheckboxClick('mais_mobilidade')} />
-            <Label className='ml-2' htmlFor="">+Mobilidade</Label>
+            <Label className='ml-2' htmlFor="">7-10 Mobilidade</Label>
             </div>
             <div className='flex mt-2'>  
             <Checkbox name="mais_resistencia" checked={aluno.mais_resistencia} onClick={() => handleCheckboxClick('mais_resistencia')} />
-            <Label className='ml-2' htmlFor="mais_resistencia">+Resistencia</Label>
+            <Label className='ml-2' htmlFor="mais_resistencia">7-10 Resistencia</Label>
             </div>
             <div className='flex mt-2'>  
             <Checkbox name="mais_equilibrio" checked={aluno.mais_equilibrio} onClick={() => handleCheckboxClick('mais_equilibrio')} />
-            <Label className='ml-2' htmlFor="mais_equilibrio">+Equilibrio</Label>
+            <Label className='ml-2' htmlFor="mais_equilibrio">7-10 Equilibrio</Label>
             </div>
             <Input className='m-2' type="text" name="observacoes" placeholder="Observações" value={aluno.observacoes} onChange={handleChange} />
             <Button className='m-2' type="submit">Adicionar Aluno</Button>

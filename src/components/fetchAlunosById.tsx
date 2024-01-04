@@ -1,6 +1,7 @@
 import axios from "axios";
 import {  useState, useEffect, JSXElementConstructor, Key, PromiseLikeOfReactNode, ReactElement, ReactNode, ReactPortal } from "react"
 import { Card, CardContent, CardHeader } from "./ui/card";
+import { Checkbox } from "./ui/checkbox";
 
 export default function FetchAlunosById() {
     const [aluno, setAluno] = useState({
@@ -69,6 +70,8 @@ export default function FetchAlunosById() {
                         <li key={aluno.id}>
                         <h2>Detalhes do Aluno</h2>
                         <p>Nome: {aluno.nome}</p>
+                        <p>Objetivos: {aluno.objetivos}</p>
+                        <p>Observações: {aluno.observacoes}</p>
                         {/* Adicione outros detalhes do aluno conforme necessário */}
                         </li>
                     </ul>
