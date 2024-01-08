@@ -79,7 +79,7 @@ export default function GetAlunosNivel() {
     useEffect(() => {
         async function fetchAlunos() {
             try {
-                const response = await axios.get('http://localhost:3000/api/v1/alunos');
+                const response = await axios.get('https://gestao-alunos-lets-back-production.up.railway.app/api/v1/alunos');
                 const alunosData: Aluno[] = response.data; // Supondo que os dados dos alunos estão na resposta
 
                 // Atualiza o estado com a lista de alunos
@@ -130,7 +130,7 @@ export default function GetAlunosNivel() {
 
         async function handleDeleteAluno(id: any) {
             try {
-                const response = await axios.delete(`http://localhost:3000/api/v1/alunos/${id}`);
+                const response = await axios.delete(`https://gestao-alunos-lets-back-production.up.railway.app/api/v1/alunos/${id}`);
                 console.log(response)
                 alert('Aluno excluido com sucesso!')
                 window.location.href = '/'  
@@ -154,7 +154,11 @@ export default function GetAlunosNivel() {
                 <Card className="w-3/4 mt-2">
                     <CardHeader>
                         <CardTitle>Lista de alunos</CardTitle>
-                        <CardDescription>Sepração por níveis</CardDescription>
+                        <CardDescription>
+                            Sepração por níveis
+                            <br/>
+                            Total de alunos: {alunos.length}
+                        </CardDescription>
                     </CardHeader>
                     <CardContent>
                         <Accordion type="single" collapsible>

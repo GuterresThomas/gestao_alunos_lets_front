@@ -62,7 +62,7 @@ export default function AddForm() {
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/api/v1/alunos', aluno);
+      const response = await axios.post('https://gestao-alunos-lets-back-production.up.railway.app/api/v1/alunos', aluno);
       console.log('Aluno adicionado:', response.data);
       alert('Aluno Adicionado com sucesso!')
       // Limpar o formulário ou fazer outra ação após adicionar o aluno com sucesso

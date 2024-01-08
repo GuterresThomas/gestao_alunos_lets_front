@@ -82,7 +82,7 @@ export default function EditForm() {
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     try {
-      const response = await axios.put(`http://localhost:3000/api/v1/alunos/${aluno.id}`, aluno);
+      const response = await axios.put(`https://gestao-alunos-lets-back-production.up.railway.app/api/v1/alunos/${aluno.id}`, aluno);
       console.log('Aluno atualizado:', response.data);
       alert('Aluno atualizado com sucesso!');
       // Redirecionar ou realizar outras ações após a atualização bem-sucedida
