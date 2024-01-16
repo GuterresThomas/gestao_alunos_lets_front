@@ -45,7 +45,7 @@ export default function EditForm() {
     // Fazer uma requisição para obter os detalhes do aluno com o ID selecionado
     async function fetchAlunoById(id: any) {
       try {
-        const response = await axios.get(`http://localhost:3000/api/v1/alunos/${id}`);
+        const response = await axios.get(`https://gestao-alunos-lets-back-production.up.railway.app/api/v1/alunos/${id}`);
         const alunoData = response.data; // Dados do aluno
         console.log('Dados do aluno selecionado: ', alunoData)
 
